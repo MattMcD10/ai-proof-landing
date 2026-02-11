@@ -1,0 +1,62 @@
+@import "tailwindcss";
+
+@theme {
+  --font-heading: "Playfair Display", serif;
+  --font-body: "DM Sans", sans-serif;
+
+  --color-navy-950: #0a0f1e;
+  --color-navy-900: #0c1222;
+  --color-navy-800: #0f172a;
+  --color-navy-700: #1e293b;
+
+  --color-risk-low: #22c55e;
+  --color-risk-moderate: #eab308;
+  --color-risk-significant: #f97316;
+  --color-risk-high: #ef4444;
+
+  --color-accent-blue: #3b82f6;
+  --color-accent-indigo: #6366f1;
+  --color-accent-purple: #a855f7;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-20px); }
+}
+
+@keyframes bounce-arrow {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(8px); }
+}
+
+@keyframes grid-move {
+  0% { transform: translate(0, 0); }
+  100% { transform: translate(60px, 60px); }
+}
+
+/* Custom range slider thumb */
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--color-accent-blue), var(--color-accent-indigo));
+  box-shadow: 0 0 12px rgba(59, 130, 246, 0.5);
+  cursor: pointer;
+  margin-top: -8px;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+input[type="range"]::-moz-range-thumb {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--color-accent-blue), var(--color-accent-indigo));
+  box-shadow: 0 0 12px rgba(59, 130, 246, 0.5);
+  cursor: pointer;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+input[type="email"]::placeholder {
+  color: #475569;
+}
