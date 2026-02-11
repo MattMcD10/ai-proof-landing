@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import { getRiskProfile } from "@/lib/quiz-data";
 
 interface ResultsSectionProps {
@@ -41,8 +41,6 @@ const BENEFITS = [
 ];
 
 export default function ResultsSection({ score }: ResultsSectionProps) {
-  const [email, setEmail] = useState("");
-  const [submitted, setSubmitted] = useState(false);
   const [visible, setVisible] = useState(false);
   const profile = getRiskProfile(score);
 
@@ -50,20 +48,6 @@ export default function ResultsSection({ score }: ResultsSectionProps) {
     const t = setTimeout(() => setVisible(true), 200);
     return () => clearTimeout(t);
   }, []);
-
-  const handleSubmit = async () => {
-    if (!email.includes("@")) return;
-    try {
-      await fetch("/api/subscribe", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, score }),
-      });
-    } catch {
-      // Silently continue — still show success for MVP
-    }
-    setSubmitted(true);
-  };
 
   return (
     <section
@@ -147,42 +131,17 @@ export default function ResultsSection({ score }: ResultsSectionProps) {
             ))}
           </div>
 
-          {/* Email capture */}
-          {!submitted ? (
-            <div>
-              <div className="mx-auto flex max-w-[480px] flex-wrap justify-center gap-3">
-                <input
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder="Enter your email address"
-                  onKeyDown={(e) => e.key === "Enter" && handleSubmit()}
-                  className="min-w-[240px] flex-1 rounded-[10px] border border-blue-200/15 bg-slate-900/80 px-5 py-3.5 font-body text-[15px] text-slate-200 outline-none transition-colors duration-200 focus:border-indigo-500/50"
-                />
-                <button
-                  onClick={handleSubmit}
-                  className="whitespace-nowrap rounded-[10px] border-none bg-gradient-to-br from-accent-blue to-accent-indigo px-7 py-3.5 font-body text-[15px] font-semibold text-white shadow-[0_0_30px_rgba(59,130,246,0.25)] transition-all duration-300 hover:-translate-y-px"
-                >
-                  Get Free Chapter + Discount
-                </button>
-              </div>
-              <p className="mt-3 text-center font-body text-xs text-slate-600">
-                We&apos;ll send Chapter 1 free + a 25% launch discount. No
-                spam, ever.
-              </p>
-            </div>
-          ) : (
-            <div className="rounded-[14px] border border-green-500/20 bg-green-500/[0.08] p-6 text-center">
-              <div className="mb-2 text-[32px]">&#10003;</div>
-              <div className="mb-1 font-body text-[17px] font-semibold text-green-500">
-                You&apos;re in!
-              </div>
-              <div className="font-body text-sm text-slate-400">
-                Check your inbox for Chapter 1 and your exclusive 25% discount
-                code.
-              </div>
-            </div>
-          )}
+          {/* CTA */}
+          <div className="text-center">
+            <a
+              href="https://a.co/d/0gpDRVQl"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block whitespace-nowrap rounded-[10px] border-none bg-gradient-to-br from-accent-blue to-accent-indigo px-9 py-4 font-body text-[17px] font-semibold text-white shadow-[0_0_30px_rgba(59,130,246,0.25)] transition-all duration-300 hover:-translate-y-px"
+            >
+              Get the Ebook on Amazon
+            </a>
+          </div>
         </div>
 
         {/* Social proof */}
