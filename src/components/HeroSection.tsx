@@ -63,7 +63,7 @@ export default function HeroSection({ onStart }: HeroSectionProps) {
 
         <div className="mt-14 flex flex-wrap justify-center gap-10">
           {[
-            { num: "14,600+", label: "Readers" },
+            { num: "New", label: "On Amazon" },
             { num: "2 min", label: "Assessment" },
             { num: "9", label: "Chapter Action Plan" },
           ].map((stat) => (
